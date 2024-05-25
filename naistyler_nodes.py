@@ -78,7 +78,7 @@ class NaiStylerComplexCSVLoader:
         """
         naistyles = {"Error loading naistyles.csv, check the console": ["",""]}
         if not os.path.exists(naistyles_path):
-            print(f"""Error. No naistyles.csv found. Put your naistyles.csv in the custom_nodes/ComfyUI_NAI-mod/CSV directory of ComfyUI. Then press "Refresh".
+            print(f"""Error {naistyles_path} PATH IS NOT PRESENT".
                   Your current root directory is: {folder_paths.base_path}
             """)
             return naistyles
@@ -87,7 +87,7 @@ class NaiStylerComplexCSVLoader:
                 naistyles = [[x.replace('"', '').replace('\n','') for x in re.split(',(?=(?:[^"]*"[^"]*")*[^"]*$)', line)] for line in f.readlines()[1:]]
                 naistyles = {x[0]: [x[1],x[2]] for x in naistyles}
         except Exception as e:
-            print(f"""Error loading naistyles.csv. Make sure it is in the custom_nodes/ComfyUI_NAI-styler/CSV directory of ComfyUI. Then press "Refresh".
+            print(f"""Error PROBLEM WITH LOADING THE FILE".
                     Your current root directory is: {folder_paths.base_path}
                     Error: {e}
             """)
@@ -147,9 +147,9 @@ class NaiStylerComplexCSVLoader:
     
     @classmethod
     def INPUT_TYPES(cls):
-        cls.naistyles_csv = cls.load_naistyles_csv(os.path.join(folder_paths.base_path, "custom_nodes\\ComfyUI-NAI-styler\\CSV\\naifilters.csv"))
-        cls.naifilters_csv = cls.load_naifilters_csv(os.path.join(folder_paths.base_path, "custom_nodes\\ComfyUI-NAI-styler\\CSV\\naistyles.csv"))
-        cls.naitypes_csv = cls.load_naitypes_csv(os.path.join(folder_paths.base_path, "custom_nodes\\ComfyUI-NAI-styler\\CSV\\naitypes.csv"))
+        cls.naistyles_csv = cls.load_naistyles_csv(os.path.join(folder_paths.base_path, "custom_nodes/ComfyUI-Universal-Styler/CSV/naifilters.csv"))
+        cls.naifilters_csv = cls.load_naifilters_csv(os.path.join(folder_paths.base_path, "custom_nodes/ComfyUI-Universal-Styler/CSV/naistyles.csv"))
+        cls.naitypes_csv = cls.load_naitypes_csv(os.path.join(folder_paths.base_path, "custom_nodes/ComfyUI-Universal-Styler/CSV/naitypes.csv"))
         return {
             "required": {
                 #"mute": (["On", "Off"],),
